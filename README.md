@@ -3,4 +3,4 @@
 
 **built and tested on node 4.4.1**
 
-[heroku link](https://jomcode-fcc-requestheaderparser.herokuapp.com/)
+[heroku link](https://jomcode-fcc-rhparser.herokuapp.com/)
