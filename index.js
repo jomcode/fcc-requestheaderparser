@@ -7,7 +7,9 @@ const requestHeaderParser = (headers) => {
   const softwareRe = /[a-z\s\d\.:;]+(?=\))/i;
   const languageRe = /.+(?=,)/;
 
-  return { ipaddress: '', language: '', software: '' };
+  const ipaddress = headers['host'].slice(0);
+
+  return { ipaddress, language: '', software: '' };
 };
 
 module.exports.requestHeaderParser = requestHeaderParser;
