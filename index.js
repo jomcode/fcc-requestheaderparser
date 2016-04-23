@@ -9,8 +9,9 @@ const requestHeaderParser = (headers) => {
 
   const ipaddress = headers['host'].slice(0);
   const language = languageRe.exec(headers['accept-language'].slice(0))[0];
+  const software = softwareRe.exec(headers['user-agent'].slice(0))[0];
 
-  return { ipaddress, language, software: '' };
+  return { ipaddress, language, software };
 };
 
 module.exports.requestHeaderParser = requestHeaderParser;
