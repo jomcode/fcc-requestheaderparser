@@ -18,6 +18,7 @@ module.exports.requestHeaderParser = requestHeaderParser;
 
 const server = http.createServer((req, res) => {
   const result = requestHeaderParser(req.headers, req.socket);
+  console.log('req.headers->', req.headers);
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(result));
 });
