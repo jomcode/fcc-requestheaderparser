@@ -4,7 +4,6 @@ const requestHeaderParser = require('../index').requestHeaderParser;
 
 describe('request header parser microservice', () => {
   const fakeHeaders = {
-    host: '127.0.0.1',
     'accept-language': 'en-US,en;q=0.5',
     'user-agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0'
   };
