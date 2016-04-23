@@ -6,8 +6,8 @@ const port = process.env.PORT || 3000;
 const requestHeaderParser = (headers) => {
   const softwareRe = /[a-z\s\d\.:;]+(?=\))/i;
   const languageRe = /.+(?=,)/;
-
-  const ipaddress = headers['x-forwarded-for'].slice(0);
+  const ip = headers['x-forwarded-for'];
+  const ipaddress = ip === undefined ? null : ip.split(',')[0];
   const language = languageRe.exec(headers['accept-language'].slice(0))[0];
   const software = softwareRe.exec(headers['user-agent'].slice(0))[0];
 
