@@ -3,7 +3,7 @@ const http = require('http');
 
 const port = process.env.PORT || 3000;
 
-const requestHeaderParser = (headers, socket) => {
+const requestHeaderParser = (headers) => {
   const softwareRe = /[a-z\s\d\.:;]+(?=\))/i;
   const languageRe = /.+(?=,)/;
 
