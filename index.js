@@ -7,16 +7,17 @@ const requestHeaderParser = (headers, socket) => {
   const softwareRe = /[a-z\s\d\.:;]+(?=\))/i;
   const languageRe = /.+(?=,)/;
 
+  const ipaddress = socket.remoteAddress.slice(0);
   const language = languageRe.exec(headers['accept-language'].slice(0))[0];
   const software = softwareRe.exec(headers['user-agent'].slice(0))[0];
 
-  return { ipaddress: '', language, software };
+  return { ipaddress, language, software };
 };
 
 module.exports.requestHeaderParser = requestHeaderParser;
 
 const server = http.createServer((req, res) => {
-  const result = requestHeaderParser(req.headers);
+  const result = requestHeaderParser(req.headers, req.socket);
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(result));
 });
