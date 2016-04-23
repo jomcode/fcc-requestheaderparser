@@ -7,7 +7,7 @@ const requestHeaderParser = (headers) => {
   const softwareRe = /[a-z\s\d\.:;]+(?=\))/i;
   const languageRe = /.+(?=,)/;
 
-  const ipaddress = socket.remoteAddress.slice(0);
+  const ipaddress = headers['x-forwarded-for'].slice(0);
   const language = languageRe.exec(headers['accept-language'].slice(0))[0];
   const software = softwareRe.exec(headers['user-agent'].slice(0))[0];
 
@@ -18,7 +18,6 @@ module.exports.requestHeaderParser = requestHeaderParser;
 
 const server = http.createServer((req, res) => {
   const result = requestHeaderParser(req.headers, req.socket);
-  console.log('req.headers->', req.headers);
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(result));
 });
